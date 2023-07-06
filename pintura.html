@@ -200,7 +200,7 @@
                             msg.editorOptions.imageWriter = createDefaultImageWriter(
                                 {
                                     ...msg.editorOptions.imageWriter,
-                                    ...(msg.editorOptions.watermark ? {postprocessImageData: (imageData) =>
+                                    ...(msg.watermark ? {postprocessImageData: (imageData) =>
                                         new Promise((resolve, reject) => {
                                             // Create a canvas element to handle the imageData
                                             const canvas = document.createElement('canvas');
@@ -240,7 +240,7 @@
                                             };
                                             watermark.onerror = reject;
                                             watermark.crossOrigin = 'Anonymous';
-                                            watermark.src = msg.editorOptions.watermark;
+                                            watermark.src = msg.watermark;
                                         })} : {}),
                                 },
                             );
