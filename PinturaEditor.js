@@ -142,7 +142,7 @@ const Editor = forwardRef((props, ref) => {
                         return webViewRef.current.postMessage(
                             stringifyMessage({
                                 editorStyleRules: styleRules,
-                                editorOptions: options,
+                                editorOptions: { ...options, watermark },
                             }),
                         );
                     }
