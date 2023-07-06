@@ -100,7 +100,7 @@ const Editor = forwardRef((props, ref) => {
     // this passes options to the editor
     useEffect(() => {
         webViewRef.current.postMessage(stringifyMessage({ editorOptions: options, watermark }));
-    }, [webViewRef, options]);
+    }, [watermark, webViewRef, options]);
 
     // this passes style rules to the editor
     useEffect(() => {
