@@ -60,7 +60,13 @@ class PinturaEditor extends React.Component<
         /** CSS styles passed to editor webview */
         styleRules?: string;
 
-        watermark?: string;
+        watermark?: {
+            base64: string;
+            width: number;
+            height: number;
+            top: number;
+            right: number;
+        };
 
         // readonly ref?: MutableRefObject<PinturaEditorRef>;
     } & PinturaEditorDefaultOptions &

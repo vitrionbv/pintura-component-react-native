@@ -181,7 +181,9 @@
                 alert(err);
                 return;
             }
-            console.log(msg)
+            if(msg.watermark){
+                console.log(msg.watermark,'there is a watermark!')
+            }
             // is a `style` object, let's update the styles
             if (msg.editorStyleRules) {
                 const styles = document.getElementById('editor-styles');
@@ -221,12 +223,12 @@
                                                 watermark,
 
                                                 // the watermark x and y position
-                                                imageData.width - 100 - 20,
-                                                20,
+                                                imageData.width - msg.watermark.width - msg.watermark.right,
+                                                msg.watermark.top,
 
                                                 // the watermark width and height
-                                                100,
-                                                40,
+                                                msg.watermark.width,
+                                                msg.watermark.height,
                                             );
 
                                             // Get and return the modified imageData
@@ -241,7 +243,7 @@
                                         };
                                         watermark.onerror = reject;
                                         watermark.crossOrigin = 'Anonymous';
-                                        watermark.src = msg.watermark;
+                                        watermark.src = msg.watermark.base64;
                                     }),
                             } : {}),
                         },
