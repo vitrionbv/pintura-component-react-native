@@ -216,31 +216,22 @@
                                         const watermark = new Image();
                                         watermark.onload = () => {
                                             // how to draw the image to the canvas
-                                            ctx.globalCompositeOperation = 'screen';
+                                            // Calculate the height based on the watermark width and desired percentage
+                                            const watermarkWidth = imageData.width * (msg.watermark.widthPercentage / 100); // 10% of image width
+                                            const watermarkHeight = (watermarkWidth / watermark.width) * watermark.height;
 
-                                            // draw the watermark in the top right corner
+                                            // Set the globalCompositeOperation and draw the watermark
+                                            ctx.globalCompositeOperation = 'screen';
                                             ctx.drawImage(
                                                 watermark,
-
-                                                // the watermark x and y position
-                                                imageData.width - msg.watermark.width - msg.watermark.right,
+                                                imageData.width - watermarkWidth - msg.watermark.right,
                                                 msg.watermark.top,
-
-                                                // the watermark width and height
-                                                msg.watermark.width,
-                                                msg.watermark.height,
-
+                                                watermarkWidth,
+                                                watermarkHeight,
                                             );
 
                                             // Get and return the modified imageData
-                                            resolve(
-                                                ctx.getImageData(
-                                                    0,
-                                                    0,
-                                                    imageData.width,
-                                                    imageData.height,
-                                                ),
-                                            );
+                                            resolve(ctx.getImageData(0, 0, imageData.width, imageData.height));
                                         };
                                         watermark.onerror = reject;
                                         watermark.crossOrigin = 'Anonymous';

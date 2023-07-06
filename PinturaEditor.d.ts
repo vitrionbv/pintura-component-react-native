@@ -62,15 +62,14 @@ class PinturaEditor extends React.Component<
 
         watermark?: {
             base64: string;
-            width: number;
-            height: number;
+            widthPercentage: number;
             top: number;
             right: number;
         };
 
         // readonly ref?: MutableRefObject<PinturaEditorRef>;
     } & PinturaEditorDefaultOptions &
-        PinturaComponentEvents,
+    PinturaComponentEvents,
     any
 > {
     editor: PinturaEditorInstance;
