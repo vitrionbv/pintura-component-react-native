@@ -22,6 +22,7 @@
             padding: 0;
             margin: 0;
             height: 100%;
+            background-color: transparent;
         }
 
         #app {
@@ -221,7 +222,7 @@
                                             const watermarkHeight = (watermarkWidth / watermark.width) * watermark.height;
 
                                             // Set the globalCompositeOperation and draw the watermark
-                                            ctx.globalCompositeOperation = 'screen';
+                                            ctx.globalCompositeOperation = 'source-over';
                                             ctx.drawImage(
                                                 watermark,
                                                 imageData.width - watermarkWidth - msg.watermark.right,
