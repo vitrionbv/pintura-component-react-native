@@ -3,6 +3,7 @@ const fs = require('fs');
 
 // source template name
 const src = 'pintura.html';
+const watermark = 'watermark.png';
 
 // need to have a reference to the root of the project so we can find npm modules
 const projectRoot = process.env.INIT_CWD;
@@ -45,11 +46,13 @@ const contentsPinturaVideoCSS = fs.existsSync(pathPinturaVideoCSS)
 
 // read component file
 const dest = path.join('bin', src);
+const destWatermark = path.join('bin', watermark);
 
 if (!fs.existsSync('bin')) fs.mkdirSync('bin');
 
 // modify template
 let data = fs.readFileSync(src, { encoding: 'utf8' });
+let dataWatermark = fs.readFileSync(watermark);
 
 // inject scripts and styles
 data = data.replace('/*__PINTURA_CSS__*/', () => contentsPinturaCSS);
@@ -119,8 +122,10 @@ if (msg.editorOptions.imageWriter || msg.editorOptions.videoWriter) {
 
 // write file in bin
 fs.writeFileSync(dest, data, { encoding: 'utf8' });
+fs.writeFileSync(destWatermark, dataWatermark);
 
 // copy template to android assets
 const androidAssets = path.join(projectRoot, 'android', 'app', 'src', 'main', 'assets');
 if (!fs.existsSync(androidAssets)) fs.mkdirSync(androidAssets);
 fs.copyFileSync(dest, path.join(androidAssets, src)); // overwrites target file
+fs.copyFileSync(destWatermark, path.join(androidAssets, watermark)); // overwrites target file
