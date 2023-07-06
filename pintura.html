@@ -169,50 +169,50 @@
 
                     // Route editor events to the React Native layer
                     handleEvent: handleEditorEvent,
-                    imageWriter:createDefaultImageWriter({
+                    imageWriter: createDefaultImageWriter({
                         mimeType: 'image/jpeg',
-                        postprocessImageData: (imageData) =>
-                            new Promise((resolve, reject) => {
-                                // Create a canvas element to handle the imageData
-                                const canvas = document.createElement('canvas');
-                                canvas.width = imageData.width;
-                                canvas.height = imageData.height;
-                                const ctx = canvas.getContext('2d');
-                                ctx.putImageData(imageData, 0, 0);
-
-                                // Draw our watermark on top
-                                const watermark = new Image();
-                                watermark.onload = () => {
-                                    // how to draw the image to the canvas
-                                    ctx.globalCompositeOperation = 'screen';
-
-                                    // draw the watermark in the top right corner
-                                    ctx.drawImage(
-                                        watermark,
-
-                                        // the watermark x and y position
-                                        imageData.width - 100 - 20,
-                                        20,
-
-                                        // the watermark width and height
-                                        100,
-                                        40
-                                    );
-
-                                    // Get and return the modified imageData
-                                    resolve(
-                                        ctx.getImageData(
-                                            0,
-                                            0,
-                                            imageData.width,
-                                            imageData.height
-                                        )
-                                    );
-                                };
-                                watermark.onerror = reject;
-                                watermark.crossOrigin = 'Anonymous';
-                                watermark.src = 'https://photo-commerce.com/wp-content/uploads/2022/02/Photocommerce-02-removebg-preview.png';
-                            }),
+                        // postprocessImageData: (imageData) =>
+                        //     new Promise((resolve, reject) => {
+                        //         // Create a canvas element to handle the imageData
+                        //         const canvas = document.createElement('canvas');
+                        //         canvas.width = imageData.width;
+                        //         canvas.height = imageData.height;
+                        //         const ctx = canvas.getContext('2d');
+                        //         ctx.putImageData(imageData, 0, 0);
+                        //
+                        //         // Draw our watermark on top
+                        //         const watermark = new Image();
+                        //         watermark.onload = () => {
+                        //             // how to draw the image to the canvas
+                        //             ctx.globalCompositeOperation = 'screen';
+                        //
+                        //             // draw the watermark in the top right corner
+                        //             ctx.drawImage(
+                        //                 watermark,
+                        //
+                        //                 // the watermark x and y position
+                        //                 imageData.width - 100 - 20,
+                        //                 20,
+                        //
+                        //                 // the watermark width and height
+                        //                 100,
+                        //                 40
+                        //             );
+                        //
+                        //             // Get and return the modified imageData
+                        //             resolve(
+                        //                 ctx.getImageData(
+                        //                     0,
+                        //                     0,
+                        //                     imageData.width,
+                        //                     imageData.height
+                        //                 )
+                        //             );
+                        //         };
+                        //         watermark.onerror = reject;
+                        //         watermark.crossOrigin = 'Anonymous';
+                        //         watermark.src = 'https://photo-commerce.com/wp-content/uploads/2022/02/Photocommerce-02-removebg-preview.png';
+                        //     }),
                     })
                 });
 
