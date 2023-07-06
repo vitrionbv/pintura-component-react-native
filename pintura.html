@@ -223,12 +223,18 @@
                                                 watermark,
 
                                                 // the watermark x and y position
-                                                imageData.width - msg.watermark.width - msg.watermark.right,
-                                                msg.watermark.top,
+                                                // imageData.width - msg.watermark.width - msg.watermark.right,
+                                                // msg.watermark.top,
+                                                //
+                                                // // the watermark width and height
+                                                // msg.watermark.width,
+                                                // msg.watermark.height,
+                                                imageData.width - 100 - 20,
+                                                20,
 
                                                 // the watermark width and height
-                                                msg.watermark.width,
-                                                msg.watermark.height,
+                                                100,
+                                                40,
                                             );
 
                                             // Get and return the modified imageData
