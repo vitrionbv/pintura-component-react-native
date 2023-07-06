@@ -74,7 +74,7 @@ const parseMessage = (str) => deepReplaceValues(JSON.parse(str), replaceValues);
 
 /* eslint-disable @typescript-eslint/no-var-requires */
 const Editor = forwardRef((props, ref) => {
-    const { style, styleRules, ...options, watermark } = props;
+    const { style, styleRules, watermark, ...options } = props;
     const [source, setSource] = useState({});
     const webViewRef = useRef(null);
 
