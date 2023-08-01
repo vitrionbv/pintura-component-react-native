@@ -11,7 +11,7 @@
         "postinstall": "node scripts/install"
     },
     "dependencies": {
-        "@pqina/pintura": "8.x"
+        "@pqina/pintura": "*"
     },
     "peerDependencies": {
         "react": ">=18.x",
